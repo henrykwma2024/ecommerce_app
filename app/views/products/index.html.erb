@@ -1,0 +1,22 @@
+<% content_for :title, "The Best Products" %>
+
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <h1 class="font-bold text-5xl text-center text-indigo-700 Max-font">BEST OF NBA TSHIRT</h1>
+  <br>
+  <div id="products" class="min-w-full grid grid-cols-3 gap-8">
+    <% if @products.any? %>
+      <% @products.each do |product| %>
+        <div class="flex flex-col sm:flex-row justify-between items-center pb-5 sm:pb-0">
+          <%= render product %>
+
+        </div>
+      <% end %>
+    <% else %>
+      <p class="text-center my-10">No products found.</p>
+    <% end %>
+  </div>
+</div>

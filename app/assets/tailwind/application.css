@@ -1,0 +1,41 @@
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.Broken-font {
+    font-family: "Broken";
+}
+
+@font-face {
+    font-family: "Broken";
+    src: url("/fonts/broken.ttf");
+}
+
+.Old-font {
+    font-family: "Old";
+}
+
+@font-face {
+    font-family: "Old";
+    src: url("/fonts/oldschool.ttf");
+}
+
+.Cor-font {
+    font-family: "Cor";
+}
+
+@font-face {
+    font-family: "Cor";
+    src: url("/fonts/cor.ttf");
+}
+
+.Max-font {
+    font-family: "Max";
+}
+
+@font-face {
+    font-family: "Max";
+    src: url("/fonts/maxini.ttf");
+}
