@@ -1,4 +1,5 @@
 class ProductsController < ApplicationController
+  before_action:check_admin_priv, except: ["index", "show"]
   before_action :set_product, only: %i[ show edit update destroy ]
 
   # GET /products or /products.json
@@ -35,10 +36,12 @@ class ProductsController < ApplicationController
   end
 
   # PATCH/PUT /products/1 or /products/1.json
-  def update
+  def update 
+    new_product_params = product_params.to_unsafe_h
+    new_product_params.delete("images") if new_product_params["images"].all?(&:blank?)
     respond_to do |format|
-      if @product.update(product_params)
-        format.html { redirect_to @product, notice: "Product was successfully updated." }
+      if @product.update(new_product_params)
+        format.html { redirect_to @product, notice: "product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -65,6 +68,6 @@ class ProductsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def product_params
-      params.expect(product: [ :name, :description, :price, images: [] ])
+      params.expect(product: [ :name, :description, :price, :category_id, images: [] ])
     end
 end
