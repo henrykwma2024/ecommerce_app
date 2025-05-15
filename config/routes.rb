@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
   resources :categories
   devise_for :admins
-  resource :admin, only: [:show], controller: :admin
-  resources :products
+  resource :admin, only: [:show, :edit, :update, :destroy], controller: :admin
+  resources :products do
+    resource :buy_now, only: [:show, :create], controller: :buy_now do
+      get "success", on: :collection
+    end
+  end
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

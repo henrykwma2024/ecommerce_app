@@ -27,7 +27,8 @@
         <%= @product.description %>
       </div>
       <span class="bg-green-500 p-2 rounded-lg text-green-300 mr-auto"> <%= number_to_currency @product.price %> </span>
-    </div>
+      <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-lg font-semibold p-4 text-center text-xl bg-yellow-400 mr-auto hover:bg-yellow-500 w-full" %>
+      </div>
   </div>
   <% if current_admin %>
     <div class="w-full flex justify-center items-center mt-16 gap-6">
