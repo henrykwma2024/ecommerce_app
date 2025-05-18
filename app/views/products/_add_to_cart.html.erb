@@ -1,0 +1,7 @@
+<% if @current_cart && @current_cart.products.where(id: @product.id).any? %>
+    <div class="rounded-l font-semibold p-4 text-center text-xl bg-green-500 hover:bg-green-500 w-full mr-auto">
+        Already In Cart
+    </div>
+<% else %>
+    <%= link_to "Add to Cart", carts_path(product_id: @product.id), class: "rounded-l font-semibold p-4 text-center text-xl bg-green-500 hover:bg-green-500 w-full mr-auto", data: { turbo_method: "post" } %>
+<% end %>

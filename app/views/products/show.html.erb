@@ -8,12 +8,13 @@
   <br>
   <div class="mx-w-7xl mx-auto px-10 mb-2">
     <%= link_to "The Best Products", products_path, class: "text-xl text-gray-100 hover:text-gray-200" %>
+    <%= link_to "> #{@product.category.name}", @product.category, class: "text-xl text-gray-100" if @product.category %>
     <%= link_to "> #{@product.name}", @product, class: "text-xl text-gray-100" %>
   </div>
-  <div class="grid grid-cols-2">
+  <div class="grid md:grid-cols-2">
     <div class="max-w-md w-full mx-auto">
       <% if @product.images.any? %>
-        <%= image_tag @product.images.first, class:"w-full h-96 object-cover" %>
+        <%= image_tag @product.images.first, class:"w-80 h-80 object-cover" %>
         <div class="grid grid-cols-3 gap-4 mt-4">
           <% @product.images[1..].each do |image| %>
             <%= image_tag image, class: "w-full h-32 object-cover" %>
@@ -27,8 +28,11 @@
         <%= @product.description %>
       </div>
       <span class="bg-green-500 p-2 rounded-lg text-green-300 mr-auto"> <%= number_to_currency @product.price %> </span>
-      <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-lg font-semibold p-4 text-center text-xl bg-yellow-400 mr-auto hover:bg-yellow-500 w-full" %>
-      </div>
+      <div class="flex justify-between gap-8">
+        <%= link_to "Buy Now", product_buy_now_path(@product), class: "rounded-lg font-semibold p-4 text-center text-xl bg-yellow-400 mr-auto hover:bg-yellow-500 w-full" %>
+        <%= render "add_to_cart", product: @product %>
+      </div>    
+    </div>
   </div>
   <% if current_admin %>
     <div class="w-full flex justify-center items-center mt-16 gap-6">

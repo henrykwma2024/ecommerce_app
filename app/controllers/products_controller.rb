@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
     new_product_params.delete("images") if new_product_params["images"].all?(&:blank?)
     respond_to do |format|
       if @product.update(new_product_params)
-        format.html { redirect_to @product, notice: "product was successfully updated." }
+        format.html { redirect_to product_url(@product), notice: "product was successfully updated." }
         format.json { render :show, status: :ok, location: @product }
       else
         format.html { render :edit, status: :unprocessable_entity }

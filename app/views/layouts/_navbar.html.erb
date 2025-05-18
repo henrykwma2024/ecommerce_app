@@ -1,0 +1,12 @@
+<div class="h-16 w-full fixed top-0 bg-gray-900 z-50"> 
+    <div class="max-w-7xl h-full w-full mx-auto flex items-center justify-between px-8">
+        <%= link_to root_path, class: "text-xl text-blue-800 flex items-end gap-4" do %>
+            <%= image_tag("home.png", class: "w-10 object-cover") %>
+            <span class="text-gray-100"> Home</span>
+        <% end %>
+
+        <%= link_to cart_path(@current_cart.secret_id) do %>
+        <%= render "layouts/cart", cart: @current_cart %>
+        <% end %>
+    </div>
+</div>
