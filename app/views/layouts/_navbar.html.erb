@@ -3,10 +3,21 @@
         <%= link_to root_path, class: "text-xl text-blue-800 flex items-end gap-4" do %>
             <%= image_tag("home.png", class: "w-10 object-cover") %>
             <span class="text-gray-100"> Home</span>
+            <%= link_to "Shop by Category", categories_path, class:"text-gray-100"%>     
         <% end %>
 
-        <%= link_to cart_path(@current_cart.secret_id) do %>
-        <%= render "layouts/cart", cart: @current_cart %>
-        <% end %>
+        <div class="flex items-center gap-6">
+            <div>
+                <% if current_user %>
+                    <%= link_to "Sign out", destroy_user_session_path, data: { "turbo-method":  :delete }, class: "text-indigo-100"  %>
+                <% else %>
+                    <%= link_to "Login", new_user_session_path, class: "bg-gray-500 text-gray-200 rounded-lg p-2" %>
+                    <%= link_to "Sign up", new_user_registration_path, class: "text-gray-100 text-lg" %>
+                <% end %>
+             </div>   
+            <%= link_to cart_path do %>
+                <%= render "layouts/cart", cart: @current_cart %>
+            <% end %>
+        </div>
     </div>
 </div>

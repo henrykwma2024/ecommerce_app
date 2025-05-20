@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
-  resources :categories
   devise_for :admins
+  devise_for :users
+  resources :categories
   resources :products do
     resource :buy_now, only: [:show, :create], controller: :buy_now do
       get "success", on: :collection
     end
   end
-
-  resources :carts, only: [:create, :show, :destroy] do
-    get "checkout", on: :member, to: "carts#checkout"
+  
+  resource :cart, only: [:show, :destroy, :create] do
+    get "checkout", on: :collection, to: "carts#checkout"
     post "stripe_session", on: :member, to: "carts#stripe_session"
     get "success", on: :member, to: "carts#success"
   end

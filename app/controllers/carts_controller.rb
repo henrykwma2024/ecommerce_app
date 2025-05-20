@@ -1,6 +1,10 @@
 class CartsController < ApplicationController
   before_action :set_product, only: [:create, :destroy]
   def create
+    if !@current_cart
+      @current_cart = Cart.create
+      session[:current_cart_id] = @current_cart.secret_id
+    end
     @current_cart.cart_items.create(product_id: @product.id)
   end
 
@@ -8,6 +12,9 @@ class CartsController < ApplicationController
   end
 
   def checkout
+    if !@current_cart&.cart_items&.any?
+      redirect_to root_path, notice: "You don't have any items in cart yet!"
+    end
   end
 
   def destroy
