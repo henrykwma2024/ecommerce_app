@@ -5,6 +5,7 @@ class CartsController < ApplicationController
       @current_cart = Cart.create
       session[:current_cart_id] = @current_cart.secret_id
     end
+    @product = Product.find(params[:product_id])
     @current_cart.cart_items.create(product_id: @product.id)
   end
 

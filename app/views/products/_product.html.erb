@@ -1,6 +1,6 @@
 <%= link_to product do %>
   <div id="<%= dom_id product %>">
-    <%= image_tag product.images.first, class:"w-full h-80 object-cover rounded-lg hover:brightness-75 transition-all duration-250" if product.images.attached? %>
+    <%= image_tag product.images.first, class:"w-100 h-100 object-cover rounded-lg hover:brightness-75 transition-all duration-250" if product.images.attached? %>
     <p class="text-lg text-gray-50"> <%= product.name %> </P>  
     <p class="text-lg text-gray-100"> <%= number_to_currency product.price %> </P>  
   </div>
